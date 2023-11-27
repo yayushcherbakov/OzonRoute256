@@ -1,0 +1,21 @@
+image: mcr.microsoft.com/dotnet/sdk:7.0
+
+stages:
+  - build
+  - test
+
+build job:
+  stage: build
+  script:
+    - echo "building..."
+    - dotnet build AnalyticsService/AnalyticsService.sln
+  artifacts:
+    paths:
+      - /bin
+    expire_in: 1 week
+
+test job: 
+  stage: test 
+  script: 
+    - echo "running tests..."
+    - dotnet test AnalyticsService/AnalyticsService.sln

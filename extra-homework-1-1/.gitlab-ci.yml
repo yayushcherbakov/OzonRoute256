@@ -1,0 +1,22 @@
+image: ubuntu
+
+stages: # stages - это этапы, которые будут выполняться в пайплайне. У нас есть только один этап - build
+  - build # Сборка
+
+before_script: # before_script выполняется перед каждой задачей/джобой. Тут мы устанавливаем необходимые пакеты - cmake, build-essential
+  - apt-get update --yes
+  - apt-get install --yes cmake
+  - apt-get install -y build-essential
+
+build:
+  stage: build
+  script:
+    - echo "BUILDING MICROSERVICE" # Выводим сообщение в консоль о том что мы начали сборку
+    - mkdir build # Создаем папку для сборки
+    - cd build # Переходим в папку сборки
+    - cmake ../src # Выполняем cmake
+    - cmake --build . # Выполняем сборку
+  artifacts: # artifacts - это артефакты, которые мы хотим сохранить после джобы/пайплайна
+    paths: # paths - это пути к файлам/папкам, которые мы хотим сохранить
+      - build # Путь к папке с собранным бинарником
+    expire_in: 1 week # Время хранения артефактов

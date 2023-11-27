@@ -1,0 +1,91 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+package WarehouseGrpc;
+
+service ProtoWarehouseService
+{
+  rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+
+  rpc GetProductById(GetProductByIdRequest) returns (GetProductByIdResponse);
+
+  rpc GetProducts(GetProductsRequest) returns (GetProductsResponse);
+
+  rpc UpdateProductPrice(UpdateProductPriceRequest) returns (google.protobuf.Empty);
+}
+
+message CreateProductRequest{
+  string name = 1;
+  double price = 2;
+  int32 weight = 3;
+  GrpcProductType type = 4;
+  google.protobuf.Timestamp creation_date = 5;
+  int32 warehouse_id = 6;
+}
+
+message CreateProductResponse{
+  int32 product_id = 1;
+}
+
+message GetProductByIdRequest{
+  int32 product_id = 1;
+}
+
+message GetProductByIdResponse{
+  int32 id = 1;
+  string name = 2;
+  double price = 3;
+  int32 weight = 4;
+  GrpcProductType type = 5;
+  google.protobuf.Timestamp creation_date = 6;
+  int32 warehouse_id = 7;
+}
+
+message UpdateProductPriceRequest{
+  int32 product_id = 1;
+  double new_price = 2;
+}
+
+enum GrpcProductType {
+  GRPC_PRODUCT_TYPE_GENERAL = 0;
+  GRPC_PRODUCT_TYPE_HOUSEHOLD_CHEMICALS = 1;
+  GRPC_PRODUCT_TYPE_TECHNIQUE = 2;
+  GRPC_PRODUCT_TYPE_GROCERIES = 3;
+}
+
+message GetProductsRequest{
+  int32 page_number = 1;
+  int32 page_size = 2;
+  NullableGrpcProductType type = 3;
+  NullableDateTime creation_date = 4;
+  google.protobuf.Int32Value warehouse_id = 5;
+}
+
+message GetProductsResponse{
+  int32 total = 1;
+  repeated GrpcProduct products = 2;
+}
+
+message GrpcProduct
+{
+  int32 id = 1;
+  string name = 2;
+  double price = 3;
+  int32 weight = 4;
+  GrpcProductType type = 5;
+  google.protobuf.Timestamp creation_date = 6;
+  int32 warehouse_id = 7;
+}
+
+message NullableDateTime {
+  bool has_value = 1;
+  google.protobuf.Timestamp value = 2;
+}
+
+message NullableGrpcProductType {
+  bool has_value = 1;
+  GrpcProductType value = 2;
+}

@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Async" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ozon.Route256.Kafka.OrderEventConsumer.DataAccess\Ozon.Route256.Kafka.OrderEventConsumer.DataAccess.csproj" />
+  </ItemGroup>
+</Project>

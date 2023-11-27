@@ -1,0 +1,3 @@
+C:/Users/Yaroslav/CLionProjects/extra-homework-1-1/src/cmake-build-debug/CMakeFiles/extra-homework-1-1.dir
+C:/Users/Yaroslav/CLionProjects/extra-homework-1-1/src/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Yaroslav/CLionProjects/extra-homework-1-1/src/cmake-build-debug/CMakeFiles/rebuild_cache.dir
